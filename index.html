@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para ti...</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, #392637 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #241522 0%, transparent 35%),
+                #0b090c;
+
+            color: #eee;
+            font-family: Georgia, "Times New Roman", serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            overflow-x: hidden;
+            padding: 40px 15px;
+        }
+
+     
+
+        .luz {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background: rgba(177, 79, 120, 0.12);
+
+            filter: blur(90px);
+
+            pointer-events: none;
+        }
+
+        .luz1 {
+            top: -100px;
+            left: -100px;
+        }
+
+        .luz2 {
+            bottom: -120px;
+            right: -100px;
+        }
+
+        
+
+        .corazones span {
+            position: fixed;
+
+            bottom: -30px;
+
+            color: rgba(226, 135, 170, 0.25);
+
+            font-size: 20px;
+
+            animation: subir 9s linear infinite;
+
+            pointer-events: none;
+        }
+
+        .corazones span:nth-child(1) {
+            left: 10%;
+            animation-delay: 1s;
+        }
+
+        .corazones span:nth-child(2) {
+            left: 25%;
+            animation-delay: 4s;
+        }
+
+        .corazones span:nth-child(3) {
+            left: 45%;
+            animation-delay: 2s;
+        }
+
+        .corazones span:nth-child(4) {
+            left: 65%;
+            animation-delay: 6s;
+        }
+
+        .corazones span:nth-child(5) {
+            left: 85%;
+            animation-delay: 3s;
+        }
+
+        @keyframes subir {
+
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+    
+
+        .contenedor {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+            max-width: 720px;
+
+            padding: 50px 45px;
+
+            background: rgba(18, 15, 20, 0.88);
+
+            border: 1px solid rgba(231, 156, 187, 0.14);
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.75),
+                inset 0 0 35px rgba(255, 255, 255, 0.015);
+
+            backdrop-filter: blur(15px);
+
+            animation: aparecer 1.8s ease;
+        }
+
+        @keyframes aparecer {
+
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        
+
+        .corazon {
+            text-align: center;
+
+            font-size: 48px;
+
+            color: #c46f94;
+
+            margin-bottom: 15px;
+
+            animation: latido 2s infinite;
+        }
+
+        @keyframes latido {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        
+
+        h1 {
+            text-align: center;
+
+            font-size: 42px;
+
+            font-weight: normal;
+
+            color: #f3dce5;
+
+            margin-bottom: 8px;
+        }
+
+        .subtitulo {
+            text-align: center;
+
+            color: #948892;
+
+            font-size: 14px;
+
+            font-style: italic;
+
+            margin-bottom: 30px;
+        }
+
+        
+
+        .linea {
+            width: 75px;
+
+            height: 1px;
+
+            background: #a65c7d;
+
+            margin: 0 auto 35px;
+        }
+
+    
+
+        .mensaje {
+            color: #d2c7ce;
+
+            font-size: 17px;
+
+            line-height: 1.9;
+
+            text-align: center;
+        }
+
+        .mensaje p {
+            margin-bottom: 22px;
+        }
+
+        .resaltado {
+            color: #e4a5bc;
+        }
+
+
+
+        .firma {
+            margin-top: 35px;
+
+            text-align: right;
+
+            color: #91858e;
+
+            font-style: italic;
+
+            font-size: 15px;
+        }
+
+        
+
+        .spotify {
+            margin-top: 40px;
+
+            padding-top: 30px;
+
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .spotify-titulo {
+            text-align: center;
+
+            color: #a99ba3;
+
+            font-size: 12px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 18px;
+        }
+
+        .spotify iframe {
+            width: 100%;
+
+            height: 352px;
+
+            border-radius: 14px;
+
+            border: none;
+
+            box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+        }
+
+  
+
+        .final {
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #766c73;
+
+            font-size: 12px;
+
+            font-style: italic;
+        }
+
+      
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px 12px;
+            }
+
+            .contenedor {
+                padding: 35px 22px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .mensaje {
+                font-size: 15px;
+            }
+
+            .spotify iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+   
+
+    <div class="luz luz1"></div>
+    <div class="luz luz2"></div>
+
+
+   
+
+    <div class="corazones">
+
+        <span>♡</span>
+        <span>♡</span>
+        <span>♡</span>
+        <span>♡</span>
+        <span>♡</span>
+
+    </div>
+
+
+
+
+    <main class="contenedor">
+
+        <div class="corazon">
+            ♡
+        </div>
+
+
+        <h1>
+            Para ti...
+        </h1>
+
+
+        <div class="subtitulo">
+            Hay cosas que nunca sabemos cómo decir en persona.
+        </div>
+
+
+        <div class="linea"></div>
+
+
+      
+        <section class="mensaje">
+
+            <p>
+                No sé exactamente en qué momento empezaste
+                a importarme tanto, pero de alguna manera
+                terminaste ocupando un lugar muy especial
+                en mis pensamientos.
+            </p>
+
+
+            <p>
+                Tal vez nunca encuentre las palabras correctas
+                para decirte todo lo que siento. Hay cosas que
+                simplemente son difíciles de explicar cuando
+                alguien realmente te importa.
+            </p>
+
+
+            <p>
+                A veces quisiera poder decirte todo lo que pasa
+                por mi cabeza cuando pienso en ti, pero termino
+                quedándome callado porque no sé si sentirás
+                lo mismo.
+            </p>
+
+
+            <p>
+                Y aunque quizá las cosas no sean como me gustaría,
+                <span class="resaltado">
+                    no me arrepiento de haberte conocido.
+                </span>
+            </p>
+
+
+            <p>
+                Porque incluso los momentos pequeños,
+                las conversaciones, las miradas y cada recuerdo
+                que tengo contigo significan mucho para mí.
+            </p>
+
+
+            <p>
+                Ojala agun dia puedas llegar a quererme tanto como yo te quiero a ti, y que tambien
+                puedas mostrar mas cariño y afecto hacia mi, pero igual si ese es el trato y cariño que crees que me merezco,
+                lo acepto ya que uno no puede obligar a nadie a sentir lo mismo que uno siente, 
+                pero si puedo decirte que me gustas mucho y que me gustaria que me dieras un poco mas de cariño y afecto, 
+                ya que eso me haria sentir muy feliz y querido por ti.
+            </p>
+
+
+            <p>
+                Pero mientras ese día llega, solo quería que
+                supieras algo:
+            </p>
+
+
+            <p class="resaltado">
+               Te quiero muchisimo como no tienes una idea.
+                <br>
+                Pero por ahora solo queria darte este mensaje para que sepas lo que siento 
+                y que no dejo de pensar en ti.
+            </p>
+
+        </section>
+
+
+
+        <div class="firma">
+
+            — Alguien que siente más de lo que sabe explicar.
+
+        </div>
+
+
+
+        <div class="spotify">
+
+            <div class="spotify-titulo">
+                ♫ ESCUCHA ESTO MIENTRAS LO LEES ♫
+            </div>
+
+<iframe 
+data-testid="embed-iframe" 
+style="border-radius:12px" 
+src="https://open.spotify.com/embed/track/0v9UztY5A12cJUsWD7PZzS?utm_source=generator&si=55d76127c19540eb"
+ width="100%"
+  height="352"
+  frameBorder="0" 
+  allowfullscreen="" 
+  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+  loading="lazy">
+</iframe>
+
+
+            <div class="final">
+                Gracias por leer esto, espero que te haya gustado.
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
