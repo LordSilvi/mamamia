@@ -1,476 +1,799 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Para ti...</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            background:
-                radial-gradient(circle at top left, #392637 0%, transparent 35%),
-                radial-gradient(circle at bottom right, #241522 0%, transparent 35%),
-                #0b090c;
-
-            color: #eee;
-            font-family: Georgia, "Times New Roman", serif;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            overflow-x: hidden;
-            padding: 40px 15px;
-        }
-
-     
-
-        .luz {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-
-            border-radius: 50%;
-
-            background: rgba(177, 79, 120, 0.12);
-
-            filter: blur(90px);
-
-            pointer-events: none;
-        }
-
-        .luz1 {
-            top: -100px;
-            left: -100px;
-        }
-
-        .luz2 {
-            bottom: -120px;
-            right: -100px;
-        }
-
-        
-
-        .corazones span {
-            position: fixed;
-
-            bottom: -30px;
-
-            color: rgba(226, 135, 170, 0.25);
-
-            font-size: 20px;
-
-            animation: subir 9s linear infinite;
-
-            pointer-events: none;
-        }
-
-        .corazones span:nth-child(1) {
-            left: 10%;
-            animation-delay: 1s;
-        }
-
-        .corazones span:nth-child(2) {
-            left: 25%;
-            animation-delay: 4s;
-        }
-
-        .corazones span:nth-child(3) {
-            left: 45%;
-            animation-delay: 2s;
-        }
-
-        .corazones span:nth-child(4) {
-            left: 65%;
-            animation-delay: 6s;
-        }
-
-        .corazones span:nth-child(5) {
-            left: 85%;
-            animation-delay: 3s;
-        }
-
-        @keyframes subir {
-
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 0;
-            }
-
-            20% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-110vh) scale(1.5);
-                opacity: 0;
-            }
-        }
-
-    
-
-        .contenedor {
-            position: relative;
-            z-index: 2;
-
-            width: 100%;
-            max-width: 720px;
-
-            padding: 50px 45px;
-
-            background: rgba(18, 15, 20, 0.88);
-
-            border: 1px solid rgba(231, 156, 187, 0.14);
-
-            border-radius: 22px;
-
-            box-shadow:
-                0 25px 80px rgba(0, 0, 0, 0.75),
-                inset 0 0 35px rgba(255, 255, 255, 0.015);
-
-            backdrop-filter: blur(15px);
-
-            animation: aparecer 1.8s ease;
-        }
-
-        @keyframes aparecer {
-
-            from {
-                opacity: 0;
-                transform: translateY(35px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        
-
-        .corazon {
-            text-align: center;
-
-            font-size: 48px;
-
-            color: #c46f94;
-
-            margin-bottom: 15px;
-
-            animation: latido 2s infinite;
-        }
-
-        @keyframes latido {
-
-            0%, 100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.08);
-            }
-        }
-
-        
-
-        h1 {
-            text-align: center;
-
-            font-size: 42px;
-
-            font-weight: normal;
-
-            color: #f3dce5;
-
-            margin-bottom: 8px;
-        }
-
-        .subtitulo {
-            text-align: center;
-
-            color: #948892;
-
-            font-size: 14px;
-
-            font-style: italic;
-
-            margin-bottom: 30px;
-        }
-
-        
-
-        .linea {
-            width: 75px;
-
-            height: 1px;
-
-            background: #a65c7d;
-
-            margin: 0 auto 35px;
-        }
-
-    
-
-        .mensaje {
-            color: #d2c7ce;
-
-            font-size: 17px;
-
-            line-height: 1.9;
-
-            text-align: center;
-        }
-
-        .mensaje p {
-            margin-bottom: 22px;
-        }
-
-        .resaltado {
-            color: #e4a5bc;
-        }
-
-
-
-        .firma {
-            margin-top: 35px;
-
-            text-align: right;
-
-            color: #91858e;
-
-            font-style: italic;
-
-            font-size: 15px;
-        }
-
-        
-
-        .spotify {
-            margin-top: 40px;
-
-            padding-top: 30px;
-
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .spotify-titulo {
-            text-align: center;
-
-            color: #a99ba3;
-
-            font-size: 12px;
-
-            letter-spacing: 2px;
-
-            margin-bottom: 18px;
-        }
-
-        .spotify iframe {
-            width: 100%;
-
-            height: 352px;
-
-            border-radius: 14px;
-
-            border: none;
-
-            box-shadow: 0 10px 35px rgba(0,0,0,0.4);
-        }
-
-  
-
-        .final {
-            text-align: center;
-
-            margin-top: 25px;
-
-            color: #766c73;
-
-            font-size: 12px;
-
-            font-style: italic;
-        }
-
-      
-
-        @media (max-width: 600px) {
-
-            body {
-                padding: 20px 12px;
-            }
-
-            .contenedor {
-                padding: 35px 22px;
-            }
-
-            h1 {
-                font-size: 32px;
-            }
-
-            .mensaje {
-                font-size: 15px;
-            }
-
-            .spotify iframe {
-                height: 300px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Algo que quería decirte</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Georgia, 'Times New Roman', serif;
+    background:#080812;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =========================
+   FONDO
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(145,70,110,.18), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(80,70,150,.16), transparent 30%),
+        linear-gradient(135deg,#080812,#11101c,#080812);
+    z-index:-3;
+}
+
+canvas{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+}
+
+/* =========================
+   PANTALLA INICIAL
+========================= */
+
+.intro{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
+}
+
+.intro-content{
+    max-width:800px;
+}
+
+.mini{
+    font-size:11px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:#aaa2b5;
+    margin-bottom:25px;
+}
+
+.intro h1{
+    font-size:clamp(48px,9vw,100px);
+    font-weight:normal;
+    line-height:.95;
+}
+
+.intro h1 span{
+    color:#d789a1;
+    font-style:italic;
+}
+
+.intro-text{
+    max-width:550px;
+    margin:30px auto;
+    color:#aaa7b5;
+    line-height:1.8;
+    font-size:17px;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.btn{
+    border:1px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.04);
+    color:white;
+    padding:15px 30px;
+    border-radius:50px;
+    cursor:pointer;
+    transition:.3s;
+    font-family:inherit;
+    font-size:14px;
+}
+
+.btn:hover{
+    background:#b8647d;
+    border-color:#b8647d;
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(184,100,125,.25);
+}
+
+/* =========================
+   MÚSICA
+========================= */
+
+.music{
+    width:min(750px,90%);
+    margin:0 auto 100px;
+    text-align:center;
+}
+
+.music-title{
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:#9e96a8;
+    margin-bottom:20px;
+}
+
+.music h2{
+    font-size:38px;
+    font-weight:normal;
+    margin-bottom:12px;
+}
+
+.music p{
+    color:#888593;
+    margin-bottom:30px;
+}
+
+.spotify{
+    padding:8px;
+    border-radius:20px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+
+/* =========================
+   MENSAJE INTERACTIVO
+========================= */
+
+.message-section{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:100px 20px;
+}
+
+.message{
+    width:min(850px,100%);
+    text-align:center;
+}
+
+.message h2{
+    font-size:clamp(35px,6vw,65px);
+    font-weight:normal;
+    margin-bottom:25px;
+}
+
+.message > p{
+    color:#9995a3;
+    line-height:1.9;
+    max-width:650px;
+    margin:auto;
+}
+
+.cards{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:18px;
+    margin-top:50px;
+}
+
+.card{
+    width:220px;
+    min-height:150px;
+    padding:25px;
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.035);
+    border-radius:18px;
+    cursor:pointer;
+    transition:.4s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.card:hover{
+    transform:translateY(-10px) rotate(1deg);
+    border-color:#c7768d;
+    box-shadow:0 20px 40px rgba(0,0,0,.3);
+}
+
+.card .hidden-text{
+    display:none;
+    color:#ddd4da;
+    line-height:1.6;
+    font-size:14px;
+}
+
+.card.active .title{
+    display:none;
+}
+
+.card.active .hidden-text{
+    display:block;
+}
+
+/* =========================
+   CONTADOR
+========================= */
+
+.counter-section{
+    padding:120px 20px;
+    text-align:center;
+}
+
+.counter-section h2{
+    font-size:40px;
+    font-weight:normal;
+    margin-bottom:15px;
+}
+
+.counter-section p{
+    color:#8d8997;
+    margin-bottom:35px;
+}
+
+.counter{
+    font-size:80px;
+    color:#d17c95;
+    font-style:italic;
+}
+
+/* =========================
+   REVELACIÓN
+========================= */
+
+.reveal-section{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:80px 20px;
+}
+
+.reveal-box{
+    max-width:750px;
+}
+
+.reveal-box h2{
+    font-size:45px;
+    font-weight:normal;
+    margin-bottom:30px;
+}
+
+.secret{
+    opacity:0;
+    max-height:0;
+    overflow:hidden;
+    transition:1s ease;
+    color:#bcb5c0;
+    line-height:2;
+    font-size:18px;
+}
+
+.secret.show{
+    opacity:1;
+    max-height:500px;
+    margin-top:30px;
+}
+
+.heart{
+    font-size:40px;
+    margin-bottom:25px;
+    color:#d27891;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.15);}
+}
+
+/* =========================
+   FINAL
+========================= */
+
+.final{
+    min-height:80vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:80px 20px;
+}
+
+.final-content{
+    max-width:750px;
+}
+
+.final h2{
+    font-size:clamp(42px,7vw,80px);
+    font-weight:normal;
+    font-style:italic;
+    line-height:1.1;
+}
+
+.final p{
+    margin-top:30px;
+    color:#96929e;
+    line-height:1.8;
+    font-size:17px;
+}
+
+.line{
+    width:70px;
+    height:1px;
+    background:#c36d85;
+    margin:0 auto 35px;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#4f4c59;
+    font-size:11px;
+    letter-spacing:3px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+
+    .intro h1{
+        font-size:55px;
+    }
+
+    .music h2{
+        font-size:30px;
+    }
+
+    .cards{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .card{
+        width:90%;
+    }
+
+    .counter{
+        font-size:60px;
+    }
+
+}
+</style>
 </head>
 
 <body>
 
-   
+<canvas id="stars"></canvas>
 
-    <div class="luz luz1"></div>
-    <div class="luz luz2"></div>
+<!-- =========================
+     INTRO
+========================= -->
 
+<section class="intro">
 
-   
+    <div class="intro-content">
 
-    <div class="corazones">
+        <div class="mini">
+            Hay algo que quiero que escuches
+        </div>
 
-        <span>♡</span>
-        <span>♡</span>
-        <span>♡</span>
-        <span>♡</span>
-        <span>♡</span>
+        <h1>
+            Esto es<br>
+            <span>para ti.</span>
+        </h1>
+
+        <p class="intro-text">
+            No quería hacer simplemente una página,
+            quería dejar aquí algo que pudieras abrir
+            cualquier día y recordar que hay momentos
+            que vale la pena guardar.
+        </p>
+
+        <button class="btn" onclick="document.getElementById('musica').scrollIntoView()">
+            Comenzar ♥
+        </button>
 
     </div>
 
+</section>
+
+
+<!-- =========================
+     CANCIÓN
+========================= -->
+
+<section class="music" id="musica">
+
+    <div class="music-title">
+        Primero escucha esto
+    </div>
+
+    <h2>
+        Esta canción me hizo pensar en ti
+    </h2>
+
+    <p>
+        Ponla mientras sigues recorriendo la página.
+    </p>
+
+    <div class="spotify">
+
+        <iframe
+            data-testid="embed-iframe"
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/track/3VjnYQbAVQLXbiR9gf1qnD?utm_source=generator&theme=0&si=a164c0b320434cb6"
+            width="100%"
+            height="352"
+            frameBorder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+        </iframe>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MENSAJE
+========================= -->
+
+<section class="message-section">
+
+    <div class="message">
+
+        <h2>
+            Ahora sí...
+        </h2>
+
+        <p>
+            Hay cosas que quizá nunca digo directamente,
+            pero que sí pienso más veces de las que imaginas.
+        </p>
+
+        <div class="cards">
+
+            <div class="card" onclick="this.classList.toggle('active')">
+
+                <div class="title">
+                    Una cosa
+                </div>
+
+                <div class="hidden-text">
+                    Me gusta saber que existes
+                    y que, de alguna manera,
+                    nuestros caminos coincidieron.
+                </div>
+
+            </div>
+
+
+            <div class="card" onclick="this.classList.toggle('active')">
+
+                <div class="title">
+                    Otra cosa
+                </div>
+
+                <div class="hidden-text">
+                    Hay momentos que parecen pequeños,
+                    pero terminan convirtiéndose
+                    en recuerdos importantes.
+                </div>
+
+            </div>
+
+
+            <div class="card" onclick="this.classList.toggle('active')">
+
+                <div class="title">
+                    Y una más...
+                </div>
+
+                <div class="hidden-text">
+                    Si pudiera guardar algunos momentos
+                    para volver a vivirlos,
+                    definitivamente habría algunos contigo.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTADOR
+========================= -->
+
+<section class="counter-section">
+
+    <h2>
+        Y hay algo curioso...
+    </h2>
+
+    <p>
+        Cada segundo que pasa se convierte
+        en otro recuerdo que algún día podremos recordar.
+    </p>
+
+    <div class="counter" id="counter">
+        00:00:00
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MENSAJE SECRETO
+========================= -->
+
+<section class="reveal-section">
+
+    <div class="reveal-box">
+
+        <div class="heart">
+            ♥
+        </div>
+
+        <h2>
+            Todavía falta algo.
+        </h2>
+
+        <button class="btn" onclick="revealMessage()">
+            Abrir mensaje
+        </button>
+
+        <div class="secret" id="secret">
+
+            <p>
+                Hay días en los que me detengo un momento a pensar en cómo cambió todo desde que apareciste.
+            </p>
+
+            <p>
+                 No sé exactamente en qué momento te volviste tan importante para mí, pero ahora te veo en los 
+                 pequeños detalles, 
+                 en una canción que suena, o en una sonrisa que se me escapa sin darme cuenta.
+            </p>
+
+            <p>
+                 Me encanta la forma en que iluminas los días ordinarios y cómo, sin proponértelo, 
+                 te has vuelto mi pensamiento favorito antes de dormir y el primero al despertar. 
+                 Solo quería recordarte lo especial que eres para mí y 
+                 lo mucho que me alegra la vida coincidir contigo
+            </p>
+            <p>Y si algún día vuelves a esta página,
+                quiero que recuerdes esto:</p>
+                
+                <strong>
+                    fuiste, eres y seguirás siendo
+                    alguien muy especial para mí.
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
 
 
 
-    <main class="contenedor">
+<section class="final">
 
-        <div class="corazon">
+    <div class="final-content">
+
+        <div class="line"></div>
+
+        <h2>
+            Algunas personas llegan
+            y simplemente dejan huella.
+        </h2>
+
+        <p>
+            Gracias por formar parte de una historia
+            que, aunque no sé exactamente hacia dónde va,
+            definitivamente me alegra estar viviendo.
+        </p>
+
+        <div style="font-size:30px;margin-top:40px;color:#d27891;">
             ♡
         </div>
 
+    </div>
 
-        <h1>
-            Para ti...
-        </h1>
-
-
-        <div class="subtitulo">
-            Hay cosas que nunca sabemos cómo decir en persona.
-        </div>
+</section>
 
 
-        <div class="linea"></div>
+<footer>
+    Hecho especialmente para ti
+</footer>
 
 
-      
-        <section class="mensaje">
-
-            <p>
-                No sé exactamente en qué momento empezaste
-                a importarme tanto, pero de alguna manera
-                terminaste ocupando un lugar muy especial
-                en mis pensamientos.
-            </p>
+<script>
 
 
-            <p>
-                Tal vez nunca encuentre las palabras correctas
-                para decirte todo lo que siento. Hay cosas que
-                simplemente son difíciles de explicar cuando
-                alguien realmente te importa.
-            </p>
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+let stars = [];
+let mouse = {
+    x: null,
+    y: null
+};
+
+function resizeCanvas(){
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+}
+
+resizeCanvas();
+
+window.addEventListener("resize", resizeCanvas);
+
+for(let i = 0; i < 130; i++){
+
+    stars.push({
+
+        x: Math.random() * window.innerWidth,
+
+        y: Math.random() * window.innerHeight,
+
+        size: Math.random() * 1.8 + .3,
+
+        speed: Math.random() * .3 + .1
+
+    });
+
+}
+
+window.addEventListener("mousemove", e => {
+
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+
+});
+
+function animateStars(){
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    stars.forEach(star => {
+
+        star.y -= star.speed;
+
+        if(star.y < 0){
+            star.y = canvas.height;
+        }
+
+        let distance = Math.sqrt(
+            Math.pow(mouse.x - star.x,2) +
+            Math.pow(mouse.y - star.y,2)
+        );
+
+        let size = star.size;
+
+        if(distance < 120){
+            size += 2;
+        }
+
+        ctx.beginPath();
+
+        ctx.arc(
+            star.x,
+            star.y,
+            size,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle = "rgba(255,255,255,.7)";
+
+        ctx.fill();
+
+    });
+
+    requestAnimationFrame(animateStars);
+
+}
+
+animateStars();
 
 
-            <p>
-                A veces quisiera poder decirte todo lo que pasa
-                por mi cabeza cuando pienso en ti, pero termino
-                quedándome callado porque no sé si sentirás
-                lo mismo.
-            </p>
 
+let seconds = 0;
 
-            <p>
-                Y aunque quizá las cosas no sean como me gustaría,
-                <span class="resaltado">
-                    no me arrepiento de haberte conocido.
-                </span>
-            </p>
+setInterval(() => {
 
+    seconds++;
 
-            <p>
-                Porque incluso los momentos pequeños,
-                las conversaciones, las miradas y cada recuerdo
-                que tengo contigo significan mucho para mí.
-            </p>
+    let hrs = Math.floor(seconds / 3600);
 
+    let mins = Math.floor((seconds % 3600) / 60);
 
-            <p>
-                Ojala agun dia puedas llegar a quererme tanto como yo te quiero a ti, y que tambien
-                puedas mostrar mas cariño y afecto hacia mi, pero igual si ese es el trato y cariño que crees que me merezco,
-                lo acepto ya que uno no puede obligar a nadie a sentir lo mismo que uno siente, 
-                pero si puedo decirte que me gustas mucho y que me gustaria que me dieras un poco mas de cariño y afecto, 
-                ya que eso me haria sentir muy feliz y querido por ti.
-            </p>
+    let secs = seconds % 60;
 
+    document.getElementById("counter").textContent =
 
-            <p>
-                Pero mientras ese día llega, solo quería que
-                supieras algo:
-            </p>
+        String(hrs).padStart(2,"0") + ":" +
 
+        String(mins).padStart(2,"0") + ":" +
 
-            <p class="resaltado">
-               Te quiero muchisimo como no tienes una idea.
-                <br>
-                Pero por ahora solo queria darte este mensaje para que sepas lo que siento 
-                y que no dejo de pensar en ti.
-            </p>
+        String(secs).padStart(2,"0");
 
-        </section>
+},1000);
 
 
 
-        <div class="firma">
+function revealMessage(){
 
-            — Alguien que siente más de lo que sabe explicar.
+    const message =
+        document.getElementById("secret");
 
-        </div>
+    message.classList.toggle("show");
 
-
-
-        <div class="spotify">
-
-            <div class="spotify-titulo">
-                ♫ ESCUCHA ESTO MIENTRAS LO LEES ♫
-            </div>
-
-<iframe 
-data-testid="embed-iframe" 
-style="border-radius:12px" 
-src="https://open.spotify.com/embed/track/0v9UztY5A12cJUsWD7PZzS?utm_source=generator&si=55d76127c19540eb"
- width="100%"
-  height="352"
-  frameBorder="0" 
-  allowfullscreen="" 
-  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-  loading="lazy">
-</iframe>
+}
 
 
-            <div class="final">
-                Gracias por leer esto, espero que te haya gustado.
-            </div>
 
-        </div>
 
-    </main>
+document.addEventListener("click", function(e){
+
+    const heart = document.createElement("div");
+
+    heart.innerHTML = "♥";
+
+    heart.style.position = "fixed";
+    heart.style.left = e.clientX + "px";
+    heart.style.top = e.clientY + "px";
+    heart.style.color = "#d27891";
+    heart.style.pointerEvents = "none";
+    heart.style.fontSize = "18px";
+    heart.style.zIndex = "9999";
+    heart.style.transition = "1s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+
+        heart.style.transform =
+            "translateY(-70px) scale(1.5)";
+
+        heart.style.opacity = "0";
+
+    },20);
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    },1000);
+
+});
+
+</script>
 
 </body>
 </html>
